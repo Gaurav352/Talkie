@@ -7,6 +7,6 @@ const router=Router();
 
 router.get("/getUsersForSidebar",protectRoute,getUsersForSidebar);
 router.get("/:id",protectRoute,getMessages);
-router.post("/sendMessage",protectRoute,upload.single("image"),sendMessage);
+router.post("/send/:receiverId",protectRoute,upload.single("image"),sendMessage);
 
 export default router;
