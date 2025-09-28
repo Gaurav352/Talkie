@@ -22,14 +22,15 @@ app.use(cookieParser());
 app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") { 
+  
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  // Handle SPA routing by serving index.html for all non-API routes
+  app.get(/^(?!\/api).*/, (req, res) => {  // Safe regex for SPA fallback
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
   });
 }
-
 
 
 server.listen(PORT,()=>{
