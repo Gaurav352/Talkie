@@ -11,8 +11,6 @@ const ProfilePage = () => {
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        console.log(file.type)
-
       
         const validTypes = ["image/png", "image/jpg", "image/jpeg"];
         if (!validTypes.includes(file.type)) {

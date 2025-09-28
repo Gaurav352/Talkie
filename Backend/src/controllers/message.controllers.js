@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
+import { getSocketId, io } from "../lib/socket.js";
 
 export const getUsersForSidebar = async (req, res) => {
   try {
@@ -45,6 +46,11 @@ export const sendMessage = async (req,res)=>{
         await message.save();
 
         //real-time
+        const receiverSocketId=getSocketId(receiverId);
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit("new-message",message);
+        }
+
 
         res.status(201).json(message);
     } catch (error) {

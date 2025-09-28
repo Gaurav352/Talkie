@@ -72,7 +72,7 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
     try {
-        console.log("here");
+        
 
         res.clearCookie("jwt"); // simple
         return res.status(200).json({ message: "Logged out" });
