@@ -24,11 +24,11 @@ app.use("/api/messages",messageRoutes);
 
 if (process.env.NODE_ENV === "production") { 
   
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
   // Handle SPA routing by serving index.html for all non-API routes
   app.get(/^(?!\/api).*/, (req, res) => {  // Safe regex for SPA fallback
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    res.sendFile(path.join(__dirname, "../Frontend/dist/index.html"));
   });
 }
 
